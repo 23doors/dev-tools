@@ -23,8 +23,6 @@ $(KIND):
 
 clean: clean-kind
 
-clean-bin: clean-kind
-
 bootstrap: bootstrap-kind ## Bootstrap kind cluster
 
 .PHONY: clean-kind bootstrap-kind

@@ -17,9 +17,9 @@ clean: clean-bin ## Clean targets
 
 .PHONY: clean-bin git-dirty git-hooks
 
-clean-bin:
+clean-bin: ## Clean dev tools binaries
 	$(info $(_bullet) Cleaning <bin>)
-	rm -rf bin/
+	rm -rf $(DEV_BIN_PATH)
 
 update-tools: ## Update dev tools
 	$(info $(_bullet) Updating dev tools to latest)
