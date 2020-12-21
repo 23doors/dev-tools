@@ -14,46 +14,19 @@ help: ## Help
 
 clean: clean-bin ## Clean targets
 
-deps: ## Download dependencies
-
-format: ## Format code
-
-lint: ## Lint code
-
-test: ## Run tests
-
-test-coverage: ## Run tests with coverage
-
-integration-test: ## Run integration tests
-
-build: ## Build all targets
-
-bootstrap: ## Bootstrap
-
-deploy: ## Deploy
-
-run: ## Run
-
-dev: ## Run in development mode
-
-debug: ## Run in debug mode
-
 .PHONY: clean-bin git-dirty git-hooks
 
 clean-bin:
 	$(info $(_bullet) Cleaning <bin>)
 	rm -rf bin/
 
-git-dirty: ## Check for uncommited changes
-	$(info $(_bullet) Checking for uncommited changes)
-	git status --porcelain
-	git diff --quiet --exit-code
-
-git-hooks: ## Configure git hooks
-	$(info $(_bullet) Configuring git hooks)
-	git config core.hooksPath .githooks
-
 update-tools: ## Update dev tools
+	$(info $(_bullet) Updating dev tools to latest)
+	curl -Ls https://github.com/23doors/dev-tools/archive/master.zip -o tmp.zip >/dev/null
+	rm -rf _tmp
+	unzip tmp.zip -d _tmp >/dev/null
+	mv _tmp/dev-tools-master/tools tools
+	rm -rf tmp.zip _tmp
 
 _bullet := $(shell printf "\033[34;1m▶\033[0m")
 

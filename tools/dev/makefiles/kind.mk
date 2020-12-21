@@ -23,7 +23,7 @@ clean: clean-kind
 
 clean-bin: clean-kind
 
-bootstrap: bootstrap-kind
+bootstrap: bootstrap-kind ## Bootstrap kind cluster
 
 .PHONY: clean-kind bootstrap-kind
 
@@ -36,7 +36,7 @@ clean-kind: $(KIND) ## Delete kind cluster
 	$(info $(_bullet) Cleaning <kind>)
 	$(dir $(_kind_mk_path))scripts/clean-kind
 
-bootstrap-kind: $(KUBECTL) $(KIND) ## Bootstrap kind cluster
+bootstrap-kind: $(KUBECTL) $(KIND)
 	$(info $(_bullet) Bootstraping <kind>)
 	$(dir $(_kind_mk_path))scripts/bootstrap-kind
 

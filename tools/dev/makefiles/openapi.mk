@@ -11,7 +11,7 @@ OPENAPI_PACKAGE_NAME ?= api
 OPENAPIGENERATORCLI := $(dir $(_openapi_mk_path))scripts/openapi-generator-cli
 OPENAPIGENERATORCLI_VERSION ?= 4.3.1
 
-lint: lint-openapi
+lint: lint-openapi ## Lint code
 
 generate: generate-openapi ## Generate code
 
