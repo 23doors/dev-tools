@@ -15,10 +15,7 @@ GOLANGCILINT_VERSION ?= 1.31.0
 GOLANGCILINT := $(DEV_BIN_PATH)/golangci-lint_$(GOLANGCILINT_VERSION)
 GOLANGCILINT_CONCURRENCY ?= 16
 
-$(GOFUMPT): $(GOBIN)
-	$(info $(_bullet) Installing <gofumpt>)
-	@mkdir -p bin
-	GOBIN=$(DEV_BIN_PATH) $(GOBIN) mvdan.cc/gofumpt
+$(GOFUMPT): install-gofumpt
 
 $(GOLANGCILINT): $(GOBIN)
 	$(info $(_bullet) Installing <golangci-lint>)
@@ -27,6 +24,13 @@ $(GOLANGCILINT): $(GOBIN)
 	mv /tmp/golangci-lint $(DEV_BIN_PATH)/golangci-lint_$(GOLANGCILINT_VERSION)
 
 .PHONY: deps-go format-go lint-go test-go test-coverage-go integration-test-go
+
+update-tools: install-gofumpt
+
+install-gofumpt: $(GOBIN)
+	$(info $(_bullet) Installing <gofumpt>)
+	@mkdir -p $(DEV_BIN_PATH)
+	GOBIN=$(DEV_BIN_PATH) $(GOBIN) -u mvdan.cc/gofumpt
 
 deps: deps-go ## Download dependencies
 
