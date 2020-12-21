@@ -1,7 +1,9 @@
 ifndef include_sqlc_mk
 _include_sqlc_mk := 1
 
-include tools/dev/makefiles/shared.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
 
 SQLC := $(DEV_BIN_PATH)/sqlc
 SQLC_VERSION ?= 1.5.0

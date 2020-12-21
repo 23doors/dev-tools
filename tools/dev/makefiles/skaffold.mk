@@ -1,8 +1,10 @@
 ifndef include_skaffold_mk
 _include_skaffold_mk := 1
 
-include tools/dev/makefiles/shared.mk
-include tools/dev/makefiles/kubectl.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
+include $(SELF_DIR)kubectl.mk
 
 SKAFFOLD_VERSION ?= 1.16.0
 SKAFFOLD := $(DEV_BIN_PATH)/skaffold_$(SKAFFOLD_VERSION)

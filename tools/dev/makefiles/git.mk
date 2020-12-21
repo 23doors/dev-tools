@@ -1,7 +1,9 @@
 ifndef _include_git_mk
 _include_git_mk = 1
 
-include tools/dev/makefiles/shared.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
 
 .PHONY: git-dirty git-hooks
 

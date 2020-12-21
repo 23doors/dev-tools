@@ -1,8 +1,10 @@
 ifndef _include_go_mk
 _include_go_mk = 1
 
-include tools/dev/makefiles/shared.mk
-include tools/dev/makefiles/gobin.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
+include $(SELF_DIR)gobin.mk
 
 GO ?= go
 FORMAT_FILES ?= .

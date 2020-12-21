@@ -1,7 +1,9 @@
 ifndef _include_kubectl_mk
 _include_kubectl_mk := 1
 
-include tools/dev/makefiles/shared.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
 
 KUBECTL_VERSION ?= 1.17.11
 KUBECTL := $(DEV_BIN_PATH)/kubectl_$(KUBECTL_VERSION)

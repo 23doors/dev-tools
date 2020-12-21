@@ -1,7 +1,9 @@
 ifndef _include_docker_mk
 _include_docker_mk := 1
 
-include tools/dev/makefiles/shared.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
 
 clean: clean-docker
 

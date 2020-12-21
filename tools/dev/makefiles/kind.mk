@@ -2,8 +2,10 @@ ifndef _include_kind_mk
 _include_kind_mk := 1
 _kind_mk_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
-include tools/dev/makefiles/shared.mk
-include tools/dev/makefiles/kubectl.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)shared.mk
+include $(SELF_DIR)kubectl.mk
 
 KIND_VERSION ?= 0.9.0
 KIND := $(DEV_BIN_PATH)/kind_$(KIND_VERSION)

@@ -1,14 +1,15 @@
 ifndef _include_openapi_mk
 _include_openapi_mk := 1
-_openapi_mk_path := $(lastword $(MAKEFILE_LIST))
 
-include tools/dev/makefiles/shared.mk
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+
+include $(SELF_DIR)/shared.mk
 
 OPENAPI_SPEC ?= api/api.yaml
 OPENAPI_OUTPUT ?= pkg/api
 OPENAPI_PACKAGE_NAME ?= api
 
-OPENAPIGENERATORCLI := $(dir $(_openapi_mk_path))scripts/openapi-generator-cli
+OPENAPIGENERATORCLI := $(SELF_DIR)scripts/openapi-generator-cli
 OPENAPIGENERATORCLI_VERSION ?= 4.3.1
 
 lint: lint-openapi ## Lint code
