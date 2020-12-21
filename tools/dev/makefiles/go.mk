@@ -7,7 +7,7 @@ include $(SELF_DIR)shared.mk
 include $(SELF_DIR)gobin.mk
 
 GO ?= go
-FORMAT_FILES ?= .
+FORMAT_FILES ?= ./...
 
 GOLANGCILINT_VERSION ?= 1.31.0
 GOLANGCILINT := $(DEV_BIN_PATH)/golangci-lint_$(GOLANGCILINT_VERSION)
@@ -30,7 +30,7 @@ format: format-go ## Format code
 
 format-go:
 	$(info $(_bullet) Formatting code)
-	$(GO) fmt -w $(FORMAT_FILES)
+	$(GO) fmt $(FORMAT_FILES)
 
 lint: lint-go ## Lint code
 
