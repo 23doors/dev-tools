@@ -1,0 +1,16 @@
+ifndef _include_kubectl_mk
+_include_kubectl_mk := 1
+
+include tools/dev/makefiles/shared.mk
+
+KUBECTL_VERSION ?= 1.17.11
+KUBECTL := $(DEV_BIN_PATH)/kubectl_$(KUBECTL_VERSION)
+
+$(KUBECTL):
+	$(info $(_bullet) Installing <kubectl>)
+	@mkdir -p $(DEV_BIN_PATH)
+	curl -sSfL https://storage.googleapis.com/kubernetes-release/release/v$(KUBECTL_VERSION)/bin/$(OS)/amd64/kubectl -o $(KUBECTL)
+	chmod u+x $(KUBECTL)
+
+endif
+
