@@ -2,7 +2,6 @@ ifndef _include_shared_mk
 _include_shared_mk := 1
 
 TOOLS_LATEST ?= https://github.com/23doors/dev-tools/archive/master.zip
-
 OS ?= $(shell uname -s | tr [:upper:] [:lower:])
 DEV_BIN_PATH ?= bin
 
