@@ -1,6 +1,8 @@
 ifndef _include_shared_mk
 _include_shared_mk := 1
 
+TOOLS_LATEST ?= https://github.com/23doors/dev-tools/archive/master.zip
+
 OS ?= $(shell uname -s | tr [:upper:] [:lower:])
 DEV_BIN_PATH ?= bin
 
@@ -22,7 +24,7 @@ clean-bin:
 
 update-tools: ## Update dev tools
 	$(info $(_bullet) Updating dev tools to latest)
-	curl -Ls https://github.com/23doors/dev-tools/archive/master.zip -o tmp.zip >/dev/null
+	curl -Ls $(TOOLS_LATEST) -o tmp.zip >/dev/null
 	rm -rf _tmp
 	unzip tmp.zip -d _tmp >/dev/null
 	mv _tmp/dev-tools-master/tools tools
