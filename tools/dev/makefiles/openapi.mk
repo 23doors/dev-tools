@@ -10,7 +10,7 @@ OPENAPI_OUTPUT ?= pkg/api
 OPENAPI_PACKAGE_NAME ?= api
 
 OPENAPIGENERATORCLI := $(SELF_DIR)scripts/openapi-generator-cli
-OPENAPIGENERATORCLI_VERSION ?= 4.3.1
+OPENAPIGENERATORCLI_VERSION ?= 5.0.1
 
 lint: lint-openapi ## Lint code
 

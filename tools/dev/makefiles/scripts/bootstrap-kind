@@ -18,7 +18,7 @@
 # limitations under the License.
 
 CLUSTER_NAME="${CLUSTER_NAME:-local}"
-K8S_VERSION="${K8S_VERSION:-1.17.11}"
+K8S_VERSION="${K8S_VERSION:-1.17.15}"
 HOST_PORT="${HOST_PORT:-80}"
 
 kind_network='kind'
@@ -68,6 +68,6 @@ data:
 EOF
 
 network_connected=$(docker network inspect ${kind_network} -f "{{range .Containers}}{{.Name}} {{end}}" | grep ${reg_name} || true)
-if [ "${network_connected}" != "${reg_name}" ]; then               
+if [ "${network_connected}" != "${reg_name}" ]; then
   docker network connect "${kind_network}" "${reg_name}" || true
 fi

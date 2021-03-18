@@ -6,7 +6,7 @@ SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 include $(SELF_DIR)shared.mk
 include $(SELF_DIR)kubectl.mk
 
-SKAFFOLD_VERSION ?= 1.16.0
+SKAFFOLD_VERSION ?= 1.20.0
 SKAFFOLD := $(DEV_BIN_PATH)/skaffold_$(SKAFFOLD_VERSION)
 
 KUBE_NAMESPACE ?= "default"

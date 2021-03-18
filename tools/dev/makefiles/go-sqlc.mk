@@ -6,7 +6,7 @@ SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 include $(SELF_DIR)shared.mk
 
 SQLC := $(DEV_BIN_PATH)/sqlc
-SQLC_VERSION ?= 1.5.0
+SQLC_VERSION ?= 1.7.0
 
 $(SQLC):
 	$(info $(_bullet) Installing <sqlc>)

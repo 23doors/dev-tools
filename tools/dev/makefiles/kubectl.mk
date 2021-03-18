@@ -5,7 +5,7 @@ SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 include $(SELF_DIR)shared.mk
 
-KUBECTL_VERSION ?= 1.17.11
+KUBECTL_VERSION ?= 1.17.15
 KUBECTL := $(DEV_BIN_PATH)/kubectl_$(KUBECTL_VERSION)
 
 $(KUBECTL):
