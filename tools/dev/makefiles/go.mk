@@ -9,13 +9,18 @@ include $(SELF_DIR)gobin.mk
 GO ?= go
 FORMAT_FILES ?= .
 
-GOFUMPT := $(DEV_BIN_PATH)/gofumpt
+GOFUMPT_VERSION ?= 0.1.1
+GOFUMPT := $(DEV_BIN_PATH)/gofumpt_$(GOFUMPT_VERSION)
 
 GOLANGCILINT_VERSION ?= 1.38.0
 GOLANGCILINT := $(DEV_BIN_PATH)/golangci-lint_$(GOLANGCILINT_VERSION)
 GOLANGCILINT_CONCURRENCY ?= 16
 
-$(GOFUMPT): install-gofumpt
+$(GOFUMPT): $(GOBIN)
+	$(info $(_bullet) Installing <gofumpt>)
+	@mkdir -p $(DEV_BIN_PATH)
+	GOBIN=/tmp $(GOBIN) mvdan.cc/gofumpt@v$(GOFUMPT_VERSION)
+	mv /tmp/gofumpt $(DEV_BIN_PATH)/gofumpt_$(GOFUMPT_VERSION)
 
 $(GOLANGCILINT): $(GOBIN)
 	$(info $(_bullet) Installing <golangci-lint>)
@@ -24,13 +29,6 @@ $(GOLANGCILINT): $(GOBIN)
 	mv /tmp/golangci-lint $(DEV_BIN_PATH)/golangci-lint_$(GOLANGCILINT_VERSION)
 
 .PHONY: deps-go format-go lint-go test-go test-coverage-go integration-test-go
-
-update-tools: install-gofumpt
-
-install-gofumpt: $(GOBIN)
-	$(info $(_bullet) Installing <gofumpt>)
-	@mkdir -p $(DEV_BIN_PATH)
-	GOBIN=$(DEV_BIN_PATH) $(GOBIN) -u mvdan.cc/gofumpt
 
 deps: deps-go ## Download dependencies
 
