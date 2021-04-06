@@ -21,12 +21,19 @@ clean-bin: ## Clean dev tools binaries
 	$(info $(_bullet) Cleaning <bin>)
 	rm -rf $(DEV_BIN_PATH)
 
-update-tools: ## Update dev tools
-	$(info $(_bullet) Updating dev tools to latest)
+update-tools-existing: ## Update only existing scripts from dev tools
+	$(info $(_bullet) Updating only existing dev tools to latest)
 	curl -Ls $(TOOLS_LATEST) -o tmp.zip >/dev/null
 	rm -rf _tmp
 	unzip tmp.zip -d _tmp >/dev/null
-	rm -rf tools/dev
+	find tools/dev -type f | xargs -I '{}' mv _tmp/dev-tools-master/{} {}
+	rm -rf tmp.zip _tmp
+
+update-tools: ## Update fully dev tools
+	$(info $(_bullet) Updating fully dev tools to latest)
+	curl -Ls $(TOOLS_LATEST) -o tmp.zip >/dev/null
+	rm -rf _tmp
+	unzip tmp.zip -d _tmp >/dev/null
 	mv _tmp/dev-tools-master/tools/dev tools/dev
 	rm -rf tmp.zip _tmp
 

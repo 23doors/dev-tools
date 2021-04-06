@@ -2,12 +2,11 @@
 
 CLUSTER_NAME="${CLUSTER_NAME:-local}"
 
-kind_network='kind'
 reg_name='kind-registry'
 
 cluster_running="$(kind get clusters 2>/dev/null | grep "${CLUSTER_NAME}" || true)"
 if [ "${cluster_running}" == "${CLUSTER_NAME}" ]; then
-  kind delete cluster --name ${CLUSTER_NAME} || true
+  kind delete cluster --name "${CLUSTER_NAME}" || true
 fi
 
 registry_running="$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)"
