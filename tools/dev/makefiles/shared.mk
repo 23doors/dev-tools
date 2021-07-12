@@ -41,6 +41,7 @@ update-tools: ## Update fully dev tools
 	curl -Ls $(TOOLS_LATEST) -o tmp.zip >/dev/null
 	rm -rf _tmp
 	unzip tmp.zip -d _tmp >/dev/null
+	rm -rf tools/dev
 	mv _tmp/dev-tools-master/tools/dev tools/dev
 	rm -rf tmp.zip _tmp
 
