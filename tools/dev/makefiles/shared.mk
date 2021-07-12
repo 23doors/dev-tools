@@ -3,7 +3,14 @@ _include_shared_mk := 1
 
 TOOLS_LATEST ?= https://github.com/23doors/dev-tools/archive/master.zip
 OS ?= $(shell uname -s | tr [:upper:] [:lower:])
+ARCH ?= $(shell case `uname -m` in \
+                (i386 | i686)   echo "386" ;; \
+                (x86_64) echo "amd64" ;; \
+                (aarch64_be | aarch64 | armv8b | armv8l) echo "arm64" ;; \
+				(*) exit "unsupported" ;; \
+        esac)
 DEV_BIN_PATH ?= bin
+
 
 .PHONY: help clean deps vendor generate format lint test test-coverage integration-test build bootrap deploy run dev debug
 

@@ -6,7 +6,7 @@ SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 include $(SELF_DIR)shared.mk
 include $(SELF_DIR)kubectl.mk
 
-SKAFFOLD_VERSION ?= 1.21.0
+SKAFFOLD_VERSION ?= 1.27.0
 SKAFFOLD := $(DEV_BIN_PATH)/skaffold_$(SKAFFOLD_VERSION)
 
 KUBE_NAMESPACE ?= "default"
@@ -15,7 +15,7 @@ DOCKER_REPO ?= ""
 $(SKAFFOLD):
 	$(info $(_bullet) Installing <skaffold>")
 	@mkdir -p $(DEV_BIN_PATH)
-	curl -sSfL https://storage.googleapis.com/skaffold/releases/v$(SKAFFOLD_VERSION)/skaffold-$(OS)-amd64 -o $(SKAFFOLD)
+	curl -sSfL https://storage.googleapis.com/skaffold/releases/v$(SKAFFOLD_VERSION)/skaffold-$(OS)-$(ARCH) -o $(SKAFFOLD)
 	chmod u+x $(SKAFFOLD)
 
 build: build-skaffold ## Build artifacts with Skaffold

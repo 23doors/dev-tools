@@ -1,5 +1,6 @@
 DEV_MAKEFILES ?= tools/dev/makefiles
 
+include $(DEV_MAKEFILES)/changelog.mk
 include $(DEV_MAKEFILES)/docker.mk
 include $(DEV_MAKEFILES)/git.mk
 include $(DEV_MAKEFILES)/go-sqlc.mk
